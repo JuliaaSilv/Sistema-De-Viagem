@@ -1,67 +1,86 @@
  ## ↗️ MODELAGEM DO PROJETO 
 ```mermaid
+
 classDiagram
 
-  class Usuario {
-    -int id
-    -string nome
-    -string cpf
-    -string telefone
-    -date dataNascimento
-    -string tipo
-    -string email
-    -string senha
-  }
+%% ========= CLASSES =========
 
-  class Reserva {
-    -int idReserva
-    -int idUser
-    -string numeroReserva
-    -date dataReserva
-    -string status
-    -int idPacote
-  }
+class Usuario {
+  +id: int
+  +nome: string
+  +cpf: string
+  +telefone: string
+  +dataNascimento: date
+  +email: string
+  +senha: string
+}
 
-  class Avaliacao {
-    -int idAvaliacao
-    -int nota
-    -string comentario
-    -date data
-    -int idUser
-    -int idPacote
-  }
+class TipoUsuario {
+  +id: int
+  +idUsuario: int
+  +tipo: string
+}
 
-  class Pacote {
-    -int id
-    -string titulo
-    -string descricao
-    -string destino
-    -int duracao
-    -date dataDisponivel
-    -float valor
-  }
+class TipoDocumento {
+  +numeroDocumento: string
+  +idUsuario: int
+  +tipoDocumento: string
+}
 
-  class Pagamento {
-    -int id
-    -float valor
-    -string formaDePagamento
-    -date dataPagamento
-    -int idReserva
-  }
+class Reserva {
+  +idReserva: int
+  +idUser: int
+  +numeroReserva: string
+  +dataReserva: date
+  +status: string
+  +idPacote: int
+}
 
-  class Viajante {
-    -int id
-    -string nome
-    -string documento
-    -string passaporte
-    -int idReserva
-  }
+class Avaliacao {
+  +idAvaliacao: int
+  +nota: int
+  +comentario: string
+  +data: date
+  +idReserva: int
+}
 
-  %% RELACIONAMENTOS
-  Usuario "1" *-- "N" Reserva : faz
-  Usuario "1" *-- "N" Avaliacao : escreve
-  Pacote "1" *-- "N" Reserva : é escolhido em
-  Pacote "1" *-- "N" Avaliacao : recebe
-  Reserva "1" *-- "1" Pagamento : gera
-  Reserva "1" *-- "N" Viajante : inclui
+class Pacote {
+  +id: int
+  +titulo: string
+  +descricao: string
+  +destino: string
+  +duracao: int
+  +dataDisponivel: date
+  +valor: float
+  +midia: string[]
+}
+
+class Pagamento {
+  +id: int
+  +valor: float
+  +formaDePagamento: string
+  +dataPagamento: date
+  +idReserva: int
+}
+
+class Viajante {
+  +id: int
+  +nome: string
+  +documento: string
+  +passaporte: string
+  +idReserva: int
+}
+
+%% ========= RELACIONAMENTOS =========
+
+Usuario "1" --> "1" TipoUsuario : possui
+Usuario "1" --> "1" TipoDocumento : apresenta
+Usuario "1" --> "N" Reserva : faz
+
+Reserva "1" --> "1" Avaliacao : possui
+Reserva "1" --> "1" Pagamento : gera
+Reserva "1" --> "N" Viajante : inclui
+Reserva "N" --> "1" Pacote : seleciona
+
+
 ```
