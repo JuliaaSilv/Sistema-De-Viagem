@@ -77,7 +77,7 @@ class Viajante {
 %% ========= RELACIONAMENTOS =========
 
 Usuario "1" --> "1" TipoUsuario : possui
-Usuario "1" --> "1" TipoDocumento : apresenta
+Usuario "1" --> "1" TipoDocumento : contém
 Usuario "1" --> "N" Reserva : faz
 
 Reserva "1" --> "1" Avaliacao : possui
