@@ -27,7 +27,7 @@ class TipoDocumento {
 class Reserva {
   +idReserva: int
   +idUser: int
-  +numeroReserva: string
+  +numeroReserva: int
   +dataReserva: date
   +status: string
   +idPacote: int
