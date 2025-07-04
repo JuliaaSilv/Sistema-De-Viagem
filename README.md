@@ -1,9 +1,6 @@
  ## ↗️ MODELAGEM DO PROJETO 
 ```mermaid
-
 classDiagram
-
-%% ========= CLASSES =========
 
 class Usuario {
   +id: int
@@ -52,7 +49,13 @@ class Pacote {
   +duracao: int
   +dataDisponivel: date
   +valor: float
-  +midia: string[]
+}
+
+class Midia {
+  +id: int
+  +tipo: string
+  +url: string
+  +idPacote: int
 }
 
 class Pagamento {
@@ -81,6 +84,8 @@ Reserva "1" --> "1" Avaliacao : possui
 Reserva "1" --> "1" Pagamento : gera
 Reserva "1" --> "N" Viajante : inclui
 Reserva "N" --> "1" Pacote : seleciona
+
+Pacote "1" --> "N" Midia : contém
 
 
 ```
