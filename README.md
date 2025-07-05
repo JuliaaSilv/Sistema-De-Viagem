@@ -15,11 +15,11 @@ class Usuario {
 class TipoUsuario {
   +id: int
   +idUsuario: int
-  +tipo: string
+  +tipo: type
 }
 
 class TipoDocumento {
-  +numeroDocumento: string
+  +numeroDocumento: int
   +idUsuario: int
   +tipoDocumento: string
 }
