@@ -14,7 +14,6 @@ class Usuario {
 }
 
 class TipoDocumento {
-  +id: int
   +idUsuario: int
   +tipoDocumento: string
   +numeroDocumento: string
@@ -27,6 +26,7 @@ class Reserva {
   +dataReserva: date
   +status: string <<enum>> // "pendente", "confirmada", "cancelada"
   +idPacote: int
+  +ValorUnitário: float
 }
 
 class Avaliacao {
@@ -44,7 +44,7 @@ class Pacote {
   +destino: string
   +duracao: int
   +dataDisponivel: date
-  +valor: float
+  +valorTotal: float
 }
 
 class Midia {
@@ -60,6 +60,7 @@ class Pagamento {
   +formaDePagamento: string <<enum>> // "cartao", "pix", "boleto"
   +dataPagamento: date
   +idReserva: int
+  +statusPagamento: string // "pendente", "confirmada", "cancelada"
 }
 
 class Viajante {
