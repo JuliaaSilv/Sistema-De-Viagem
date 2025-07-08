@@ -1,6 +1,6 @@
  ## ↗️ MODELAGEM DO PROJETO 
 ```mermaid
-classDiagram
+ classDiagram
 
 class Usuario {
   +id: int
@@ -10,26 +10,22 @@ class Usuario {
   +dataNascimento: date
   +email: string
   +senha: string
-}
-
-class TipoUsuario {
-  +id: int
-  +idUsuario: int
-  +tipo: type
+  +tipo: string <<enum>> // "administrador", "atendente", "cliente"
 }
 
 class TipoDocumento {
-  +numeroDocumento: int
+  +id: int
   +idUsuario: int
   +tipoDocumento: string
+  +numeroDocumento: string
 }
 
 class Reserva {
   +idReserva: int
-  +idUser: int
+  +idUsuario: int
   +numeroReserva: int
   +dataReserva: date
-  +status: string
+  +status: string <<enum>> // "pendente", "confirmada", "cancelada"
   +idPacote: int
 }
 
@@ -61,7 +57,7 @@ class Midia {
 class Pagamento {
   +id: int
   +valor: float
-  +formaDePagamento: string
+  +formaDePagamento: string <<enum>> // "cartao", "pix", "boleto"
   +dataPagamento: date
   +idReserva: int
 }
@@ -74,11 +70,19 @@ class Viajante {
   +idReserva: int
 }
 
+class Promocao {
+  +id: int
+  +nome: string
+  +descricao: string
+  +descontoPercentual: float
+  +dataInicio: date
+  +dataFim: date
+}
+
 %% ========= RELACIONAMENTOS =========
 
-Usuario "1" --> "1" TipoUsuario : possui
-Usuario "1" --> "1" TipoDocumento : contém
 Usuario "1" --> "N" Reserva : faz
+Usuario "1" --> "1" TipoDocumento : possui
 
 Reserva "1" --> "1" Avaliacao : possui
 Reserva "1" --> "1" Pagamento : gera
@@ -86,6 +90,8 @@ Reserva "1" --> "N" Viajante : inclui
 Reserva "N" --> "1" Pacote : seleciona
 
 Pacote "1" --> "N" Midia : contém
+Pacote "N" --> "N" Promocao : participa
+
 
 
 ```
