@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css' // Importando o CSS do Bootstrap
+import 'bootstrap/dist/js/bootstrap.bundle.min.js' // Importando o JavaScript do Bootstrap
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,7 +28,9 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Hello World
+        
+        <button type='buttton' className='mt-5 btn btn-success'>Hello World</button> 
+        {/* // Exemplo de botão do Bootstrap, com margem */}
       </p>
     </>
   )
